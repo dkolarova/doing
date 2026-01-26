@@ -9,13 +9,13 @@ void ft_filter(char *s, char *f)
 {
 	int i = 0, j, len = strlen(f);
 
-	while (s[i])
+	while(s[i])
 	{
 		j = 0;
 		while (f[j] && s[i + j] == f[j])
 			j++;
 		if (j == len)
-			while(j--) write(1, "*", 1), i++;
+			while (j--) write(1, "*", 1), i++;
 		else
 			write(1, &s[i++], 1);
 	}
@@ -23,10 +23,10 @@ void ft_filter(char *s, char *f)
 
 int main(int ac, char **av)
 {
-	char buf[99999];
-	int n, i = 0;
+	char buf[9999];
+	int i = 0, n;
 
-	if (ac != 2 || !av[1][0])
+	if (!ac || !av[1][0])
 		return 1;
 	while ((n = read(0, buf + i, BUFFER_SIZE)) > 0)
 		i += n;
