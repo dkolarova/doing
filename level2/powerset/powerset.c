@@ -6,7 +6,7 @@ void print_subset(int *arr, int *path, int len)
 	int i = -1;
 	int first = 1;
 
-	while(++i < len)
+	while (++i < len)
 	{
 		if (path[i])
 		{
@@ -35,20 +35,25 @@ void backtrack(int *arr, int *path, int len, int idx, int sum, int target)
 
 int main(int ac, char **av)
 {
-	if (ac < 2)
+	if (ac < 3)
 		return 1;
-	int i = -1;
-	int len = ac - 2;
+	
 	int target = atoi(av[1]);
+	int len = ac - 2;
+
 	int *arr = malloc(sizeof(int) * len);
 	int *path = calloc(len, sizeof(int));
-	if (!arr | !path)
+	if (!arr || !path)
 		return 1;
-	while (++i < len)
+	
+	for (int i = 0; i < len; i++)
 		arr[i] = atoi(av[i + 2]);
+	
 	backtrack(arr, path, len, 0, 0, target);
+
 	free(arr);
 	free(path);
 	return 0;
 }
+
 
